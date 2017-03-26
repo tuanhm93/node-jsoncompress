@@ -64,11 +64,11 @@ function restoreDataTypes(data, template) { // jshint ignore:line
 }
 
 module.exports.compress = function compress(data, template, maxFloatDecimals) {
-  var separator = '';
+  // var separator = '';
 
   // Use a json template to convert the data into a long array
   data = packetflattener.flatten(data, template);
-
+  return data;
   // If decimal reduction is set, remove any excess decimals
   // to shrink the size of the data.
   if (maxFloatDecimals >= 0) {
@@ -106,19 +106,19 @@ module.exports.compress = function compress(data, template, maxFloatDecimals) {
 };
 
 module.exports.decompress = function decompress(data, template) {
-  var separator = '';
+  // var separator = '';
 
-  // Decompress the data string
-  data = LZString.decompress(data);
-
-  // Extract the separator character
-  separator = data[0];
-
-  // Extract the rest of the string
-  data = data.slice(1, data.length);
-
-  // Split the string into an array
-  data = data.split(separator);
+  // // Decompress the data string
+  // data = LZString.decompress(data);
+  //
+  // // Extract the separator character
+  // separator = data[0];
+  //
+  // // Extract the rest of the string
+  // data = data.slice(1, data.length);
+  //
+  // // Split the string into an array
+  // data = data.split(separator);
 
   // Use a JSON template to turn the array into an object
   data = packetflattener.unflatten(data, template);
